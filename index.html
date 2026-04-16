@@ -3,21 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Azzaufi | Supervisor Technical Support Portfolio</title>
+  <title>Azzaufi | Technical Support Supervisor</title>
   
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   
   <style>
-    /* --- THEME CONFIGURATION --- */
+    /* --- CORE THEME --- */
     :root {
       --primary: #3498db;      /* Light Blue */
       --secondary: #2c3e50;    /* Dark Blue */
-      --bg: #0f172a;           /* Deep Dark Background (Darkmode: true) */
+      --bg: #0f172a;           /* Deep Navy (Dark Mode) */
       --card-bg: rgba(30, 41, 59, 0.7);
       --text-main: #f1f5f9;
       --text-dim: #94a3b8;
-      --accent: #3498db;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -56,16 +55,20 @@
 
     /* --- HERO SECTION --- */
     header {
-      height: 85vh;
+      min-height: 85vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      padding: 50px 0;
     }
 
     .hero-pre { font-family: 'Fira Code', monospace; color: var(--primary); margin-bottom: 1rem; }
-    h1 { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.1; margin-bottom: 1rem; }
-    .hero-sub { font-size: 1.2rem; color: var(--text-dim); max-width: 700px; margin-bottom: 2rem; }
+    h1 { font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1.1; margin-bottom: 1.5rem; }
+    .hero-sub { font-size: 1.2rem; color: var(--text-dim); max-width: 700px; margin-bottom: 3rem; }
 
+    /* BUTTONS WRAPPER */
+    .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
+    
     .btn-contact {
       padding: 1rem 2rem;
       border: 1px solid var(--primary);
@@ -74,12 +77,31 @@
       border-radius: 4px;
       font-family: 'Fira Code', monospace;
       transition: 0.3s;
-      width: fit-content;
+      display: inline-block;
     }
     .btn-contact:hover { background: rgba(52, 152, 219, 0.1); }
 
-    /* --- SECTIONS GENERAL --- */
-    section { padding: 100px 0; }
+    .btn-cv {
+      padding: 1rem 2rem;
+      background-color: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+      font-weight: 500;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-cv:hover { 
+      background-color: #2980b9; 
+      transform: translateY(-2px); 
+      box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3); 
+    }
+
+    /* --- SECTION STYLING --- */
+    section { padding: 80px 0; }
     .section-title {
       font-family: 'Fira Code', monospace;
       color: var(--primary);
@@ -88,28 +110,29 @@
       display: flex;
       align-items: center;
     }
-    .section-title::after { content: ""; height: 1px; width: 250px; background: var(--text-dim); margin-left: 20px; opacity: 0.2; }
+    .section-title::after { 
+        content: ""; height: 1px; width: clamp(50px, 20vw, 250px); 
+        background: var(--text-dim); margin-left: 20px; opacity: 0.2; 
+    }
 
-    /* --- ABOUT SECTION --- */
+    /* ABOUT GRID */
     .about-grid {
       display: grid;
       grid-template-columns: 3fr 2fr;
       gap: 50px;
-      align-items: flex-start;
+      align-items: center;
     }
-
-    .profile-img-container {
-      position: relative;
-      max-width: 300px;
-    }
+    .profile-img-container { text-align: center; }
     .profile-img-container img {
       width: 100%;
+      max-width: 300px;
       border-radius: 8px;
       border: 2px solid var(--primary);
       padding: 5px;
+      background: var(--secondary);
     }
 
-    /* --- EXPERIENCE SECTION --- */
+    /* EXPERIENCE CARDS */
     .exp-card {
       background: var(--card-bg);
       padding: 2.5rem;
@@ -118,41 +141,37 @@
       border-left: 4px solid var(--primary);
       transition: 0.3s;
     }
-    .exp-card:hover { transform: translateX(10px); background: rgba(30, 41, 59, 0.9); }
-    .exp-header { display: flex; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; }
+    .exp-card:hover { transform: translateX(10px); }
+    .exp-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; flex-wrap: wrap; }
     .company { font-weight: 700; color: var(--primary); font-size: 1.2rem; }
-    .date { font-family: 'Fira Code', monospace; font-size: 0.9rem; color: var(--text-dim); }
-    .role { font-weight: 600; margin-bottom: 1rem; display: block; }
+    .date { font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--text-dim); }
+    .role { font-weight: 600; margin-bottom: 1rem; display: block; color: var(--text-main); }
+    
     ul { list-style: none; }
     ul li::before { content: "▹"; color: var(--primary); margin-right: 10px; }
-    ul li { margin-bottom: 0.5rem; color: var(--text-dim); }
+    ul li { margin-bottom: 0.8rem; color: var(--text-dim); font-size: 0.95rem; }
 
-    /* --- SKILLS SECTION --- */
+    /* SKILLS GRID */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
-    .skill-category {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 1.5rem;
-      border-radius: 8px;
-    }
+    .skill-category { background: rgba(255, 255, 255, 0.03); padding: 2rem; border-radius: 8px; }
     .skill-category h4 { color: var(--primary); margin-bottom: 1rem; font-family: 'Fira Code', monospace; }
 
     /* --- FOOTER --- */
-    footer {
-      text-align: center;
-      padding: 5rem 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .footer-links a { margin: 0 1rem; color: var(--text-main); text-decoration: none; font-size: 1.2rem; }
+    footer { text-align: center; padding: 4rem 0; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+    .footer-links { margin-bottom: 1.5rem; }
+    .footer-links a { margin: 0 1rem; color: var(--text-main); text-decoration: none; font-size: 1.1rem; }
 
-    /* --- MOBILE REPAIRS --- */
+    /* --- MOBILE RESPONSIVENESS --- */
     @media (max-width: 768px) {
       .about-grid { grid-template-columns: 1fr; }
-      .profile-img-container { margin: 0 auto; order: -1; }
-      .section-title::after { width: 100px; }
+      .profile-img-container { order: -1; margin-bottom: 30px; }
+      .hero-btns { flex-direction: column; width: 100%; }
+      .btn-contact, .btn-cv { text-align: center; justify-content: center; }
+      nav { padding: 1rem 0; }
       .nav-links { display: none; }
     }
   </style>
@@ -167,27 +186,32 @@
         <a href="#about">/About</a>
         <a href="#experience">/Experience</a>
         <a href="#skills">/Skills</a>
-        <a href="mailto:aidielazzaufi@hotmail.com">/Contact</a>
       </div>
     </nav>
 
     <header data-aos="fade-up">
       <p class="hero-pre">Supervisor Technical Support</p>
       <h1>Mohamad Aidiel <br>Azzaufi.</h1>
-      <p class="hero-sub">Dedicated technician with over 9 years of experience in hardware diagnostics, team leadership, and customer success across the tech manufacturing and premium hardware sectors.</p>
-      <a href="mailto:aidielazzaufi@hotmail.com" class="btn-contact">Get In Touch</a>
+      <p class="hero-sub">With over 9 years of specialized experience at ILLEGEAR and Western Digital, I lead technical teams to deliver high-performance hardware solutions and exceptional customer service.</p>
+      
+      <div class="hero-btns">
+        <a href="mailto:aidielazzaufi@hotmail.com" class="btn-contact">Get In Touch</a>
+        <a href="Azzaufi_CV.pdf" class="btn-cv" download>
+          <span>⬇</span> Download CV
+        </a>
+      </div>
     </header>
 
     <section id="about">
       <h2 class="section-title">/AboutMe</h2>
       <div class="about-grid">
         <div data-aos="fade-right">
-          <p>Dedicated technician with over 9 years of experience troubleshooting a wide range of mechanical, electronic, electrical, and computer problems. Having honed my skills at <strong>Western Digital</strong> for 7 years and now at <strong>ILLEGEAR SDN. BHD.</strong></p>
+          <p>Dedicated technician with over 9 years of experience troubleshooting a wide range of mechanical, electronic, electrical, and computer problems.</p>
           <br>
-          <p>I am a quick learner and a hard-working individual with excellent time management and interpersonal skills, specializing in resolving complex technical issues for high-performance computer systems.</p>
+          <p>Having honed my skills at <strong>Western Digital</strong> for 7 years and now at <strong>ILLEGEAR SDN. BHD.</strong>, I specialize in advanced motherboard-level diagnostics, team leadership, and precision hardware assembly for premium computing systems.</p>
         </div>
         <div class="profile-img-container" data-aos="zoom-in">
-          <img src="images/profile.jpg" alt="Mohamad Aidiel Azzaufi">
+          <img src="images/profile.jpg" alt="Azzaufi Profile">
         </div>
       </div>
     </section>
@@ -202,10 +226,10 @@
         </div>
         <span class="role">Supervisor Technical Support & Customer Service</span>
         <ul>
-          <li>Lead and oversee the technician team, managing schedules and quality of work.</li>
-          <li>Perform advanced diagnostics and repairs on high-performance gaming laptops and desktops.</li>
-          <li>Manage customer service interactions and resolve complex hardware disputes.</li>
-          <li>Execute precise hardware assembly for premium computer systems.</li>
+          <li>Lead and oversee the technician team, managing schedules and service quality.</li>
+          <li>Advanced motherboard-level diagnostics and repairs on high-performance systems.</li>
+          <li>Manage technical disputes and customer service solutions.</li>
+          <li>Supervise precise hardware integration for premium gaming desktops and laptops.</li>
         </ul>
       </div>
 
@@ -216,32 +240,32 @@
         </div>
         <span class="role">Senior Technician</span>
         <ul>
-          <li>Maintained and repaired robotic systems used in hard drive manufacturing.</li>
+          <li>Repaired and maintained robotic systems for hard drive manufacturing.</li>
           <li>Troubleshot electronic boards and optimized testing units using PLC knowledge.</li>
-          <li>Managed machine equipment maintenance and resolved software diagnostic issues.</li>
+          <li>Resolved complex machine equipment and software diagnostic issues.</li>
         </ul>
       </div>
     </section>
 
     <section id="skills">
-      <h2 class="section-title">/Skills&Certifications</h2>
+      <h2 class="section-title">/Skills</h2>
       <div class="skills-grid">
         <div class="skill-category" data-aos="fade-up">
-          <h4>Technical Skills</h4>
+          <h4>Technical Proficiency</h4>
           <ul>
-            <li>Hardware Diagnostics & Motherboard Repair</li>
-            <li>Windows Systems Administration</li>
+            <li>Motherboard-level Diagnostics</li>
+            <li>Windows System Administration</li>
             <li>AutoCAD 2011 (Professional)</li>
-            <li>Basic C++ Programming</li>
+            <li>Hardware Assembly & Stress Testing</li>
           </ul>
         </div>
         <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-          <h4>Industrial</h4>
+          <h4>Industrial & Systems</h4>
           <ul>
             <li>PLC (Programmable Logic Controllers)</li>
             <li>Electro-Pneumatics</li>
             <li>Robotic System Maintenance</li>
-            <li>Electrical Wiring</li>
+            <li>Technical Team Leadership</li>
           </ul>
         </div>
       </div>
@@ -249,24 +273,19 @@
 
     <footer>
       <div class="footer-links">
-        <a href="https://github.com/AZZAUFI" target="_blank">GH</a>
-        <a href="https://linkedin.com/in/aidielazzaufi" target="_blank">LI</a>
-        <a href="https://azzaufi.github.io/AZZAUFI/" target="_blank">WEB</a>
+        <a href="https://github.com/AZZAUFI" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/aidielazzaufi" target="_blank">LinkedIn</a>
       </div>
-      <p style="margin-top: 2rem; color: var(--text-dim); font-size: 0.8rem;">
-        +60 148473180 | aidielazzaufi@hotmail.com <br>
-        Built by Azzaufi &copy; 2026
+      <p style="color: var(--text-dim); font-size: 0.85rem;">
+        +60 148473180 | aidielazzaufi@hotmail.com <br><br>
+        &copy; 2026 Mohamad Aidiel Azzaufi. All rights reserved.
       </p>
     </footer>
   </div>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true,
-      easing: 'ease-in-out'
-    });
+    AOS.init({ duration: 1000, once: true });
   </script>
 </body>
 </html>
