@@ -3,36 +3,56 @@ const audio = document.getElementById("audioPlayer");
 const loader = document.getElementById("preloader");
 const mybutton = document.getElementById("backtotopbutton");
 const mobileTogglemenu = document.getElementById("mobiletogglemenu");
+const themeToggle = document.querySelector('#checkbox');
 
 // --- 1. Theme (Dark/Light Mode) Logic ---
-function visualmode() {
-    const isLightMode = document.body.classList.toggle("light-mode");
+function initTheme() {
+    const currentTheme = localStorage.getItem('theme');
     
-    // Invert specific elements if necessary
-    document.querySelectorAll(".needtobeinvert").forEach(function(e) {
-        e.classList.toggle("invertapplied");
-    });
-
-    // Save preference to localStorage
-    localStorage.setItem("theme", isLightMode ? "light-mode" : "dark-mode");
+    if (currentTheme === 'light') {
+        document.body.classList.add('light-mode');
+        if (themeToggle) themeToggle.checked = true;
+        applyInversions(true);
+    }
 }
 
-// Check for saved theme on page load
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme === "light-mode") {
-    document.body.classList.add("light-mode");
+function switchTheme(e) {
+    const isLight = e.target.checked;
+    if (isLight) {
+        document.body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.body.classList.remove('light-mode');
+        localStorage.setItem('theme', 'dark');
+    }
+    applyInversions(isLight);
+}
+
+function applyInversions(isLight) {
+    document.querySelectorAll(".needtobeinvert").forEach(el => {
+        isLight ? el.classList.add("invertapplied") : el.classList.remove("invertapplied");
+    });
+}
+
+if (themeToggle) {
+    themeToggle.addEventListener('change', switchTheme, false);
 }
 
 // --- 2. Navigation & UI Controls ---
 function settingtoggle() {
-    document.getElementById("setting-container").classList.toggle("settingactivate");
-    document.getElementById("visualmodetogglebuttoncontainer").classList.toggle("visualmodeshow");
-    document.getElementById("soundtogglebuttoncontainer").classList.toggle("soundmodeshow");
+    const container = document.getElementById("setting-container");
+    if (container) {
+        container.classList.toggle("settingactivate");
+        document.getElementById("visualmodetogglebuttoncontainer")?.classList.toggle("visualmodeshow");
+        document.getElementById("soundtogglebuttoncontainer")?.classList.toggle("soundmodeshow");
+    }
 }
 
 function playpause() {
-    // If switch is NOT checked, pause; else play
-    if (!document.getElementById("switchforsound").checked) {
+    const soundSwitch = document.getElementById("switchforsound");
+    if (!audio || !soundSwitch) return;
+    
+    if (!soundSwitch.checked) {
         audio.pause();
     } else {
         audio.play();
@@ -41,24 +61,23 @@ function playpause() {
 
 function hamburgerMenu() {
     document.body.classList.toggle("stopscrolling");
-    document.getElementById("mobiletogglemenu").classList.toggle("show-toggle-menu");
-    document.getElementById("burger-bar1").classList.toggle("hamburger-animation1");
-    document.getElementById("burger-bar2").classList.toggle("hamburger-animation2");
-    document.getElementById("burger-bar3").classList.toggle("hamburger-animation3");
+    mobileTogglemenu?.classList.toggle("show-toggle-menu");
+    document.getElementById("burger-bar1")?.classList.toggle("hamburger-animation1");
+    document.getElementById("burger-bar2")?.classList.toggle("hamburger-animation2");
+    document.getElementById("burger-bar3")?.classList.toggle("hamburger-animation3");
 }
 
 function hidemenubyli() {
     document.body.classList.remove("stopscrolling");
-    document.getElementById("mobiletogglemenu").classList.remove("show-toggle-menu");
-    document.getElementById("burger-bar1").classList.remove("hamburger-animation1");
-    document.getElementById("burger-bar2").classList.remove("hamburger-animation2");
-    document.getElementById("burger-bar3").classList.remove("hamburger-animation3");
+    mobileTogglemenu?.classList.remove("show-toggle-menu");
+    document.getElementById("burger-bar1")?.classList.remove("hamburger-animation1");
+    document.getElementById("burger-bar2")?.classList.remove("hamburger-animation2");
+    document.getElementById("burger-bar3")?.classList.remove("hamburger-animation3");
 }
 
 // --- 3. Scroll & Active Tabs Logic ---
 const sections = document.querySelectorAll("section");
-const navLi = document.querySelectorAll(".navbar .navbar-tabs .navbar-tabs-ul li");
-const mobilenavLi = document.querySelectorAll(".mobiletogglemenu .mobile-navbar-tabs-ul li");
+const navLi = document.querySelectorAll(".nav-links a");
 
 window.onscroll = function() {
     scrollFunction();
@@ -66,6 +85,7 @@ window.onscroll = function() {
 };
 
 function scrollFunction() {
+    if (!mybutton) return;
     if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
         mybutton.style.display = "block";
     } else {
@@ -74,8 +94,7 @@ function scrollFunction() {
 }
 
 function scrolltoTopfunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function handleActiveNav() {
@@ -87,14 +106,9 @@ function handleActiveNav() {
         }
     });
 
-    mobilenavLi.forEach(li => {
-        li.classList.remove("activeThismobiletab");
-        if (li.classList.contains(current)) li.classList.add("activeThismobiletab");
-    });
-
-    navLi.forEach(li => {
-        li.classList.remove("activeThistab");
-        if (li.classList.contains(current)) li.classList.add("activeThistab");
+    navLi.forEach(a => {
+        a.classList.remove("active"); // Ensure you have an .active style in CSS if needed
+        if (a.getAttribute("href") === `#${current}`) a.classList.add("active");
     });
 }
 
@@ -121,7 +135,11 @@ window.addEventListener("resize", () => {
     mouseYEndPoint = window.innerHeight;
 });
 
-// --- 5. Lifecycle & Security ---
+// --- 5. Lifecycle ---
+document.addEventListener("DOMContentLoaded", () => {
+    initTheme();
+});
+
 window.addEventListener("load", function() {
     if (loader) loader.style.display = "none";
     const heyMsg = document.querySelector(".hey");
