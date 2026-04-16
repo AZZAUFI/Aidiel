@@ -41,13 +41,11 @@
       line-height: 1.6;
       overflow-x: hidden;
       transition: background-color 0.3s ease;
-      /* Subtle Radial Tech Glow */
       background-image: 
         radial-gradient(circle at 80% 20%, rgba(52, 152, 219, 0.07), transparent 25%),
         radial-gradient(circle at 20% 80%, rgba(128, 0, 255, 0.04), transparent 25%);
     }
 
-    /* Technical Grid Overlay */
     body::before {
       content: "";
       position: fixed;
@@ -60,7 +58,6 @@
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-    /* --- NAVIGATION --- */
     nav {
       padding: 1rem 0;
       display: flex;
@@ -86,7 +83,6 @@
     .nav-links a { margin-left: 2rem; text-decoration: none; color: var(--text-dim); font-size: 0.85rem; font-family: 'Fira Code', monospace; transition: 0.3s; }
     .nav-links a:hover { color: var(--primary); }
 
-    /* --- THEME TOGGLE --- */
     .theme-switch { display: inline-block; height: 24px; position: relative; width: 48px; }
     .theme-switch input { display: none; }
     .slider-container {
@@ -102,9 +98,7 @@
     input:checked + .slider-container { background-color: var(--primary); }
     .icon { font-size: 10px; user-select: none; }
 
-    /* --- HERO SECTION --- */
     header { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
-    .hero-pre { font-family: 'Fira Code', monospace; color: var(--primary); margin-bottom: 1rem; font-size: 0.9rem; }
     h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); line-height: 1; margin-bottom: 2rem; font-weight: 800; letter-spacing: -2px; }
     
     .hero-btns { display: flex; gap: 15px; }
@@ -121,7 +115,6 @@
     }
     .btn-cv:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3); }
 
-    /* --- SECTION STYLING --- */
     section { padding: 100px 0; }
     .section-title {
       font-family: 'Fira Code', monospace; color: var(--primary);
@@ -129,19 +122,15 @@
     }
     .section-title::after { content: ""; height: 1px; width: 200px; background: var(--primary); margin-left: 20px; opacity: 0.3; }
 
-    /* ABOUT GRID - NO BOX IMAGE */
     .about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 60px; align-items: center; }
     .profile-img-container { position: relative; }
     .profile-img-container img {
       width: 100%; max-width: 320px; border-radius: 20px;
       filter: grayscale(20%) contrast(1.1);
       transition: 0.5s ease;
-      /* Remove border/padding to "remove the box" */
-      border: none; background: transparent; padding: 0;
     }
     .profile-img-container:hover img { filter: grayscale(0%); transform: scale(1.02); }
 
-    /* CARDS */
     .exp-card {
       background: var(--card-bg); padding: 2rem; border-radius: 12px; margin-bottom: 1.5rem;
       border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(5px);
@@ -156,7 +145,6 @@
     ul li { position: relative; padding-left: 20px; margin-bottom: 0.6rem; color: var(--text-dim); font-size: 0.9rem; }
     ul li::before { content: "→"; position: absolute; left: 0; color: var(--primary); }
 
-    /* SKILLS */
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
     .skill-category { background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
     .skill-category h4 { color: var(--primary); margin-bottom: 1.2rem; font-family: 'Fira Code', monospace; font-size: 1rem; }
@@ -180,6 +168,7 @@
       <div class="nav-links">
         <a href="#about">ABOUT</a>
         <a href="#experience">EXPERIENCE</a>
+        <a href="#education">EDUCATION</a>
         <a href="#skills">SKILLS</a>
       </div>
       <label class="theme-switch" for="checkbox">
@@ -204,7 +193,7 @@
       <h2 class="section-title">01. About Me</h2>
       <div class="about-grid">
         <div data-aos="fade-right">
-          <p>Dedicated technician with over 9 years of experience troubleshooting a wide range of mechanical, electronic, electrical, and computer problems. Strong background in both repair and troubleshooting, having honed my skills at <strong>Western Digital</strong> for 7 years and Now at <strong>ILLEGEAR SDN. BHD.</strong> .</p>
+          <p>Dedicated technician with over 9 years of experience troubleshooting a wide range of mechanical, electronic, electrical, and computer problems. Strong background in both repair and troubleshooting, having honed my skills at <strong>Western Digital</strong> for 7 years and now at <strong>ILLEGEAR SDN. BHD.</strong></p>
           <br>
           <p>A quick learner and a hard-working individual with excellent time management, interpersonal, and communication skills. I am always eager to expand my knowledge and skillset and am actively seeking new opportunities to do so.</p>
         </div>
@@ -226,11 +215,11 @@
           <li>Lead technician teams for high-performance system integration.</li>
           <li>Execute advanced component-level motherboard repairs.</li>
           <li>Manage technical service workflows and customer satisfaction.</li>
-          <li>Supervise precise hardware integration for premium gaming desktops and laptops.</li>
+          <li>Supervise hardware integration for premium gaming desktops and laptops.</li>
         </ul>
-        </div>
-    
-        <div class="exp-card" data-aos="fade-up">
+      </div>
+
+      <div class="exp-card" data-aos="fade-up">
         <div class="exp-header">
           <span class="company">WESTERN DIGITAL (MALAYSIA)</span>
           <span class="date">2012 — 2019</span>
@@ -240,10 +229,10 @@
           <li>Repaired and maintained robotic systems for hard drive manufacturing.</li>
           <li>Troubleshot electronic boards and optimized testing units using PLC knowledge.</li>
           <li>Resolved complex machine equipment and software diagnostic issues.</li>
-          <li>Applied knowledge of PLC and electrical wiring to optimize department testing units and on machine equipment.</li>
+          <li>Optimized department testing units and machine equipment via electrical wiring.</li>
         </ul>
       </div>
-      
+
       <div class="exp-card" data-aos="fade-up">
         <div class="exp-header">
           <span class="company">MERCEDES BENZ PEKAN PLANT</span>
@@ -251,26 +240,49 @@
         </div>
         <span class="role">Industrial Training</span>
         <ul>
-          <li>Gained foundational experience in automotive component assembly and factory QC checking.</li>
+          <li>Gained experience in automotive component assembly and factory QC checking.</li>
           <li>Assisted in unit testing within a rigorous factory environment.</li>
-        </ul>     
+        </ul>      
+      </div>
+    </section>
+
+    <section id="education">
+      <h2 class="section-title">03. Education</h2>
+      <div class="exp-card" data-aos="fade-up">
+        <div class="exp-header">
+          <span class="company">Polytechnic Port Dickson</span>
+          <span class="date">Jan 2009 — Dec 2011</span>
+        </div>
+        <span class="role">Diploma in Mechanical Engineering (Manufacturing)</span>
+        <ul>
+          <li>CGPA Score of 2.83</li>
+        </ul>
+      </div>
+
+      <div class="exp-card" data-aos="fade-up">
+        <div class="exp-header">
+          <span class="company">SMK Dato’ Mahmud Mat</span>
+          <span class="date">Jan 2003 — Dec 2007</span>
+        </div>
+        <span class="role">Sijil Pelajaran Malaysia (SPM)</span>
+        </ul>
       </div>
     </section>
 
     <section id="skills">
-      <h2 class="section-title">03. Skills</h2>
+      <h2 class="section-title">04. Skills</h2>
       <div class="skills-grid">
         <div class="skill-category" data-aos="fade-up">
-          <h4>Diagnostics motherboard</h4>
+          <h4>Diagnostics & Systems</h4>
           <ul>
             <li>Motherboard Repair</li>
             <li>Hardware Stress Testing</li>
             <li>System Admin</li>
-            <li>Electro-Pneumatics</li>
+            <li>OS Optimization</li>
           </ul>
         </div>
         <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
-          <h4>Industrial</h4>
+          <h4>Industrial & Design</h4>
           <ul>
             <li>PLC Systems</li>
             <li>AutoCAD Professional</li>
@@ -296,7 +308,6 @@
   <script>
     AOS.init({ duration: 800, once: true });
     
-    // Theme logic stays compatible with your main.js
     const toggleSwitch = document.querySelector('#checkbox');
     toggleSwitch.addEventListener('change', (e) => {
       document.body.classList.toggle('light-mode', e.target.checked);
