@@ -1,48 +1,183 @@
-/* --- PANEL LAYOUT --- */
-section {
-    max-width: 1100px;
-    margin: 40px auto; /* Separates each panel */
-    padding: 6rem 4rem;
-    background: rgba(255, 255, 255, 0.02); /* Glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 24px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.4s ease, border-color 0.4s ease;
+/* --- GLOBAL RESET & CORE --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
-section:hover {
-    border-color: rgba(52, 152, 219, 0.3);
-    background: rgba(255, 255, 255, 0.04);
+:root {
+    cursor: default;
+    --color-white: #fff;
+    --color-black: #000;
+    --color-dark-mode: #0f172a; /* Deepened for better contrast */
+    --color-light-mode: #f8fafc;
+    --color-ddd-color: #ddd;
+    --color-gray: #c4c4c4;
+    --color-purple: #8000ff;
+    --color-light-purple: #cf59e6;
+    --color-light-blue: #6bc5f8;
+    --color-navbarBorder-dark: #e2e2e207;
+    --color-shadowDark: rgba(0, 0, 0, 0.137);
+    --tech-stack-box-first-color: #1a1a29;
+    --tech-stack-box-second-color: rgba(27, 27, 40, 0);
+    --tech-stack-box-border-color: #292929;
+    --primary: #3498db;
+    --text-main: #f1f5f9;
+    --text-dim: #94a3b8;
+    font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Specific adjustment for Hero/Header so it's not in a box */
-header {
-    background: none !important;
-    border: none !important;
-    backdrop-filter: none !important;
-    margin-top: 120px; /* Space for floating navbar */
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* Section Title Fix */
-.section-title {
-    font-size: 2.2rem;
-    color: var(--primary);
-    margin-bottom: 4rem;
+body {
+    background-color: var(--color-dark-mode);
+    /* Subtle Technical Glow */
+    background-image: radial-gradient(circle at top right, rgba(52, 152, 219, 0.05), transparent),
+                      radial-gradient(circle at bottom left, rgba(128, 0, 255, 0.05), transparent);
+    color: var(--text-main);
+    overflow-x: hidden;
+    transition: background-color 0.3s ease;
+}
+
+/* Technical Grid Overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* --- NAVIGATION & LOGO --- */
+.navbar {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 20px; /* Floating look */
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    height: 70px;
+    width: 85%;
+    max-width: 1200px;
+    padding: 0 30px;
+    justify-content: space-between;
+    z-index: 999;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+}
+
+.logo {
     font-family: 'Fira Code', monospace;
+    font-weight: bold;
+    color: var(--primary);
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: 0.3s;
+    letter-spacing: -0.5px;
 }
 
-/* --- LIGHT MODE PANEL ADJUSTMENTS --- */
-body.light-mode section {
-    background: #ffffff;
+.logo:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+}
+
+/* --- THEME TOGGLE STYLING --- */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    display: inline-block;
+    height: 28px;
+    position: relative;
+    width: 54px;
+}
+
+.theme-switch input { display: none; }
+
+.slider-container {
+    background-color: #1e293b;
+    bottom: 0; cursor: pointer; left: 0; right: 0; top: 0;
+    position: absolute;
+    transition: .4s;
+    border-radius: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.ball {
+    background-color: #fff;
+    bottom: 3px; height: 20px; width: 20px; left: 4px;
+    position: absolute;
+    transition: .4s;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+input:checked + .slider-container .ball { transform: translateX(24px); }
+input:checked + .slider-container { background-color: var(--primary); }
+
+/* --- CARDS & BLOCKS --- */
+.exp-card, .skill-category {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 2.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.exp-card:hover, .skill-category:hover {
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-5px) scale(1.01);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* --- THEME LOGIC (LIGHT MODE) --- */
+body.light-mode {
+    --color-dark-mode: #f8fafc;
+    --text-main: #0f172a;
+    --text-dim: #475569;
+}
+
+body.light-mode::before {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+body.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .exp-card, 
+body.light-mode .skill-category {
+    background: #fff;
     border-color: #e2e8f0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
-/* Mobile Tweak */
-@media screen and (max-width: 768px) {
-    section {
-        margin: 20px 15px;
-        padding: 4rem 2rem;
-        border-radius: 16px;
-    }
+/* --- MOBILE RESPONSIVENESS --- */
+@media screen and (max-width: 998px) {
+    .navbar { width: 95%; padding: 0 15px; }
+    .logo { font-size: 1.1rem; }
+    .nav-links { display: none; } /* Use hamburger menu logic from JS */
 }
