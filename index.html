@@ -1,376 +1,685 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Mohamad Aidiel Azzaufi | Technical Support Supervisor</title>
+
   
+
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
   
+
   <style>
-    /* --- GLOBAL RESET & CORE --- */
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        -webkit-user-select: none;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
-    }
+
+    /* --- CORE THEME & VARIABLES --- */
 
     :root {
-        --primary: #3498db;
-        --bg: #0f172a;
-        --card-bg: rgba(30, 41, 59, 0.4);
-        --panel-bg: rgba(255, 255, 255, 0.02);
-        --text-main: #f1f5f9;
-        --text-dim: #94a3b8;
-        --grid-color: rgba(255, 255, 255, 0.03);
+
+      --primary: #3498db;      
+
+      --secondary: #2c3e50;    
+
+      --bg: #0f172a;           /* Deep Navy */
+
+      --card-bg: rgba(30, 41, 59, 0.4);
+
+      --text-main: #f1f5f9;
+
+      --text-dim: #94a3b8;
+
+      --nav-bg: rgba(15, 23, 42, 0.85);
+
+      --grid-color: rgba(255, 255, 255, 0.03);
+
     }
+
+
 
     body.light-mode {
-        --bg: #f8fafc;
-        --card-bg: rgba(255, 255, 255, 0.8);
-        --panel-bg: #ffffff;
-        --text-main: #0f172a;
-        --text-dim: #475569;
-        --grid-color: rgba(0, 0, 0, 0.05);
+
+      --bg: #f8fafc;
+
+      --card-bg: rgba(255, 255, 255, 0.7);
+
+      --text-main: #0f172a;
+
+      --text-dim: #475569;
+
+      --nav-bg: rgba(248, 250, 252, 0.85);
+
+      --secondary: #e2e8f0;
+
+      --grid-color: rgba(0, 0, 0, 0.04);
+
     }
 
-    html {
-        font-size: 62.5%; /* 1rem = 10px */
-        scroll-behavior: smooth;
-    }
+
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+
 
     body {
-        background-color: var(--bg);
-        color: var(--text-main);
-        font-family: 'Inter', sans-serif;
-        line-height: 1.6;
-        overflow-x: hidden;
-        transition: background-color 0.3s ease;
-        background-image: 
-            radial-gradient(circle at 80% 20%, rgba(52, 152, 219, 0.05), transparent 25%),
-            radial-gradient(circle at 20% 80%, rgba(128, 0, 255, 0.03), transparent 25%);
+
+      background-color: var(--bg);
+
+      color: var(--text-main);
+
+      font-family: 'Inter', sans-serif;
+
+      line-height: 1.6;
+
+      overflow-x: hidden;
+
+      transition: background-color 0.3s ease;
+
+      background-image: 
+
+        radial-gradient(circle at 80% 20%, rgba(52, 152, 219, 0.07), transparent 25%),
+
+        radial-gradient(circle at 20% 80%, rgba(128, 0, 255, 0.04), transparent 25%);
+
     }
 
-    /* Technical Grid Overlay */
+
+
     body::before {
-        content: "";
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
-        background-size: 40px 40px;
-        z-index: -1;
-        pointer-events: none;
+
+      content: "";
+
+      position: fixed;
+
+      top: 0; left: 0; width: 100%; height: 100%;
+
+      background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
+
+      background-size: 40px 40px;
+
+      z-index: -1;
+
+      pointer-events: none;
+
     }
+
+
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
 
-    /* --- FLOATING NAVBAR --- */
-    .navbar {
-        display: flex;
-        align-items: center;
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(15, 23, 42, 0.8);
-        backdrop-filter: blur(12px);
-        height: 60px;
-        width: 90%;
-        max-width: 800px;
-        padding: 0 30px;
-        justify-content: space-between;
-        z-index: 1000;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 50px;
-        transition: all 0.3s ease;
+
+
+    nav {
+
+      padding: 1rem 0;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+
+      background: var(--nav-bg);
+
+      backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+
     }
 
-    body.light-mode .navbar {
-        background: rgba(255, 255, 255, 0.8);
-        border-color: rgba(0, 0, 0, 0.1);
-    }
+
 
     .logo { 
+
       font-family: 'Fira Code', monospace; 
-      font-weight: bold; color: var(--primary); 
-      font-size: 1.4rem; text-decoration: none; 
+
+      font-weight: bold; 
+
+      color: var(--primary); 
+
+      font-size: 1rem; 
+
+      text-decoration: none;
+
+      letter-spacing: -0.5px;
+
     }
 
-    .nav-links a { 
-        margin-left: 2rem; 
-        text-decoration: none; 
-        color: var(--text-dim); 
-        font-size: 1.1rem; 
-        font-family: 'Fira Code', monospace; 
-        transition: 0.3s; 
-    }
+
+
+    .nav-links a { margin-left: 2rem; text-decoration: none; color: var(--text-dim); font-size: 0.85rem; font-family: 'Fira Code', monospace; transition: 0.3s; }
+
     .nav-links a:hover { color: var(--primary); }
 
-    /* --- THEME SWITCH --- */
+
+
     .theme-switch { display: inline-block; height: 24px; position: relative; width: 48px; }
+
     .theme-switch input { display: none; }
+
     .slider-container {
+
       background-color: #334155;
+
       bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0;
+
       transition: .4s; border-radius: 34px; display: flex; align-items: center; justify-content: space-around;
+
     }
+
     .ball {
+
       background-color: #fff; bottom: 3px; height: 18px; left: 3px; position: absolute;
+
       transition: .4s; width: 18px; border-radius: 50%; z-index: 2;
+
     }
+
     input:checked + .slider-container .ball { transform: translateX(24px); }
+
     input:checked + .slider-container { background-color: var(--primary); }
 
-    /* --- HERO --- */
-    header { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding-top: 100px;}
-    h1 { font-size: clamp(3rem, 7vw, 5rem); line-height: 1.1; margin-bottom: 2.5rem; font-weight: 800; letter-spacing: -2px; }
+    .icon { font-size: 10px; user-select: none; }
+
+
+
+    header { min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+
+    h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); line-height: 1; margin-bottom: 2rem; font-weight: 800; letter-spacing: -2px; }
+
+    
 
     .hero-btns { display: flex; gap: 15px; }
-    .btn-contact, .btn-cv {
-      padding: 1.2rem 2.4rem; border-radius: 4px; font-family: 'Fira Code', monospace; 
-      transition: 0.3s; font-size: 1.2rem; text-decoration: none;
-    }
-    .btn-contact { border: 1px solid var(--primary); color: var(--primary); }
-    .btn-cv { background-color: var(--primary); color: #fff; }
-    .btn-cv:hover, .btn-contact:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2); }
 
-    /* --- PANEL STYLING --- */
-    section { 
-        padding: 6rem 4rem; 
-        margin-bottom: 4rem; 
-        background: var(--panel-bg); 
-        border-radius: 24px; 
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
+    .btn-contact {
+
+      padding: 0.8rem 1.8rem; border: 1px solid var(--primary); color: var(--primary);
+
+      text-decoration: none; border-radius: 4px; font-family: 'Fira Code', monospace; transition: 0.3s; font-size: 0.9rem;
+
     }
 
-    body.light-mode section {
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    .btn-contact:hover { background: rgba(52, 152, 219, 0.1); transform: translateY(-2px); }
+
+
+
+    .btn-cv {
+
+      padding: 0.8rem 1.8rem; background-color: var(--primary); color: #fff;
+
+      text-decoration: none; border-radius: 4px; font-family: 'Fira Code', monospace; transition: 0.3s;
+
+      display: flex; align-items: center; gap: 8px; font-size: 0.9rem;
+
     }
-    
+
+    .btn-cv:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3); }
+
+
+
+    section { padding: 100px 0; }
+
     .section-title {
-      font-family: 'Fira Code', monospace; color: var(--primary);
-      font-size: 2rem; margin-bottom: 4rem; display: flex; align-items: center;
-    }
-    .section-title::after { content: ""; height: 1px; width: 150px; background: var(--primary); margin-left: 20px; opacity: 0.3; }
 
-    /* --- CONTENT CARDS --- */
-    .about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 40px; align-items: center; }
-    .profile-img-container img {
-      width: 100%; max-width: 300px; border-radius: 20px;
-      filter: grayscale(20%) contrast(1.1); transition: 0.5s ease;
+      font-family: 'Fira Code', monospace; color: var(--primary);
+
+      font-size: 1.5rem; margin-bottom: 3rem; display: flex; align-items: center;
+
     }
+
+    .section-title::after { content: ""; height: 1px; width: 200px; background: var(--primary); margin-left: 20px; opacity: 0.3; }
+
+
+
+    .about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 60px; align-items: center; }
+
+    .profile-img-container { position: relative; }
+
+    .profile-img-container img {
+
+      width: 100%; max-width: 320px; border-radius: 20px;
+
+      filter: grayscale(20%) contrast(1.1);
+
+      transition: 0.5s ease;
+
+    }
+
     .profile-img-container:hover img { filter: grayscale(0%); transform: scale(1.02); }
 
-    .exp-card, .skill-category {
-      background: var(--card-bg); 
-      padding: 2.5rem; border-radius: 12px; margin-bottom: 2rem;
-      border: 1px solid rgba(255,255,255,0.05);
-      transition: 0.3s;
+
+
+    .exp-card {
+
+      background: var(--card-bg); padding: 2rem; border-radius: 12px; margin-bottom: 1.5rem;
+
+      border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(5px);
+
+      transition: all 0.3s ease;
+
     }
-    .exp-card:hover { border-color: var(--primary); transform: translateY(-5px); }
 
-    .company { font-weight: 700; color: var(--primary); font-size: 1.6rem; }
-    .date { font-family: 'Fira Code', monospace; font-size: 1.2rem; color: var(--text-dim); }
-    .role { font-weight: 600; font-size: 1.4rem; color: var(--text-main); display: block; margin: 1rem 0; }
+    .exp-card:hover { transform: translateY(-5px); border-color: var(--primary); background: rgba(52, 152, 219, 0.05); }
 
-    ul { list-style: none; }
-    ul li { position: relative; padding-left: 20px; margin-bottom: 0.8rem; color: var(--text-dim); font-size: 1.3rem; }
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+
+    .company { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+
+    .date { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--text-dim); }
+
+    .role { font-weight: 600; font-size: 0.95rem; color: var(--text-main); display: block; margin-bottom: 1rem; }
+
+
+
+    ul li { position: relative; padding-left: 20px; margin-bottom: 0.6rem; color: var(--text-dim); font-size: 0.9rem; }
+
     ul li::before { content: "→"; position: absolute; left: 0; color: var(--primary); }
 
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; }
 
-    footer { text-align: center; padding: 6rem 0; opacity: 0.8; }
-    .footer-links a { margin: 0 1rem; color: var(--text-main); text-decoration: none; font-family: 'Fira Code', monospace; font-size: 1.2rem; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+
+    .skill-category { background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+
+    .skill-category h4 { color: var(--primary); margin-bottom: 1.2rem; font-family: 'Fira Code', monospace; font-size: 1rem; }
+
+
+
+    footer { text-align: center; padding: 5rem 0; opacity: 0.8; }
+
+    .footer-links a { margin: 0 1rem; color: var(--text-main); text-decoration: none; font-family: 'Fira Code', monospace; font-size: 0.8rem; }
+
+
 
     @media (max-width: 768px) {
-      .navbar { width: 95%; padding: 0 15px; }
-      .nav-links { display: none; }
-      section { padding: 4rem 2rem; }
+
       .about-grid { grid-template-columns: 1fr; text-align: center; }
+
       .profile-img-container { order: -1; }
+
+      .exp-header { flex-direction: column; }
+
+      .nav-links { display: none; }
+
     }
+
   </style>
+
 </head>
 
+
+
 <body>
+
   <div class="container">
-    <nav class="navbar">
+
+    <nav>
+
       <a href="#" class="logo">M. Aidiel Azzaufi</a>
+
       <div class="nav-links">
+
         <a href="#about">ABOUT</a>
+
         <a href="#experience">EXPERIENCE</a>
+
         <a href="#education">EDUCATION</a>
+
         <a href="#skills">SKILLS</a>
+
       </div>
+
       <label class="theme-switch" for="checkbox">
+
           <input type="checkbox" id="checkbox" />
+
           <div class="slider-container">
+
               <span class="icon">🌙</span>
+
               <span class="icon">☀️</span>
+
               <div class="ball"></div>
+
           </div>
+
       </label>
+
     </nav>
 
+
+
     <header data-aos="fade-up">
+
       <h1>MOHAMAD AIDIEL AZZAUFI<br>BIN MOHD MUSTAFA</h1>
+
       <div class="hero-btns">
+
         <a href="mailto:aidielazzaufi@hotmail.com" class="btn-contact">Contact Me</a>
+
         <a href="Azzaufi_CV.pdf" class="btn-cv" download>Download CV</a>
+
       </div>
+
     </header>
 
-    <section id="about" data-aos="fade-up">
+
+
+    <section id="about">
+
       <h2 class="section-title">01. About Me</h2>
+
       <div class="about-grid">
+
         <div data-aos="fade-right">
-          <p style="font-size: 1.4rem;">Dedicated technician with over 9 years of experience troubleshooting a wide range of mechanical, electronic, electrical, and computer problems. Strong background in both repair and troubleshooting, having honed my skills at <strong>Western Digital</strong> for 7 years and now at <strong>ILLEGEAR SDN. BHD.</strong></p>
+
+          <p>Dedicated technician with over 9 years of experience troubleshooting a wide range of mechanical, electronic, electrical, and computer problems. Strong background in both repair and troubleshooting, having honed my skills at <strong>Western Digital</strong> for 7 years and now at <strong>ILLEGEAR SDN. BHD.</strong></p>
+
           <br>
-          <p style="font-size: 1.4rem;">A quick learner and a hard-working individual with excellent time management, interpersonal, and communication skills. I am always eager to expand my knowledge and skillset and am actively seeking new opportunities to do so.</p>
+
+          <p>A quick learner and a hard-working individual with excellent time management, interpersonal, and communication skills. I am always eager to expand my knowledge and skillset and am actively seeking new opportunities to do so.</p>
+
         </div>
+
         <div class="profile-img-container" data-aos="zoom-in">
+
           <img src="images/profile.png" alt="Aidiel Azzaufi">
+
         </div>
+
       </div>
+
     </section>
 
-    <section id="experience" data-aos="fade-up">
-      <h2 class="section-title">02. Experience</h2>
-      
-      <div class="exp-card">
-        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+
+
+    <section id="experience">
+
+      <h2 class="section-title">02. Professional Experience</h2>
+
+      <div class="exp-card" data-aos="fade-up">
+
+        <div class="exp-header">
+
           <span class="company">ILLEGEAR SDN. BHD.</span>
+
           <span class="date">2020 — Present</span>
+
         </div>
+
         <span class="role">Supervisor Technical Support & Customer Service</span>
+
         <ul>
+
           <li>Lead technician teams for high-performance system integration.</li>
+
           <li>Execute advanced component-level motherboard repairs.</li>
+
           <li>Manage technical service workflows and customer satisfaction.</li>
+
           <li>Supervise hardware integration for premium gaming desktops and laptops.</li>
+
         </ul>
+
       </div>
 
-      <div class="exp-card">
-        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+
+
+      <div class="exp-card" data-aos="fade-up">
+
+        <div class="exp-header">
+
           <span class="company">WESTERN DIGITAL (MALAYSIA)</span>
+
           <span class="date">2012 — 2019</span>
+
         </div>
+
         <span class="role">Senior Technician</span>
+
         <ul>
+
           <li>Repaired and maintained robotic systems for hard drive manufacturing.</li>
+
           <li>Troubleshot electronic boards and optimized testing units using PLC knowledge.</li>
+
           <li>Resolved complex machine equipment and software diagnostic issues.</li>
+
           <li>Optimized department testing units and machine equipment via electrical wiring.</li>
+
         </ul>
+
       </div>
 
-      <div class="exp-card">
-        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+
+
+      <div class="exp-card" data-aos="fade-up">
+
+        <div class="exp-header">
+
           <span class="company">MERCEDES BENZ PEKAN PLANT</span>
+
           <span class="date">2010 – 2010</span>
+
         </div>
+
         <span class="role">Industrial Training</span>
+
         <ul>
+
           <li>Gained experience in automotive component assembly and factory QC checking.</li>
+
           <li>Assisted in unit testing within a rigorous factory environment.</li>
+
         </ul>      
+
       </div>
+
     </section>
 
-    <section id="education" data-aos="fade-up">
+
+
+    <section id="education">
+
       <h2 class="section-title">03. Education</h2>
-      <div class="exp-card">
-        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+
+      <div class="exp-card" data-aos="fade-up">
+
+        <div class="exp-header">
+
           <span class="company">Polytechnic Port Dickson</span>
+
           <span class="date">Jan 2009 — Dec 2011</span>
+
         </div>
+
         <span class="role">Diploma in Mechanical Engineering (Manufacturing)</span>
+
         <ul>
+
           <li>CGPA Score of 2.83</li>
+
         </ul>
+
       </div>
 
-      <div class="exp-card">
-        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+
+
+      <div class="exp-card" data-aos="fade-up">
+
+        <div class="exp-header">
+
           <span class="company">SMK Dato’ Mahmud Mat</span>
+
           <span class="date">Jan 2003 — Dec 2007</span>
+
         </div>
+
         <span class="role">Sijil Pelajaran Malaysia (SPM)</span>
+
+        </ul>
+
       </div>
+
     </section>
 
-    <section id="skills" data-aos="fade-up">
-      <h2 class="section-title">04. Skills</h2>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <h4>Diagnostics & Systems</h4>
-          <ul>
-            <li>Motherboard Repair</li>
-            <li>Hardware Stress Testing</li>
-            <li>Component Diagnostics</li>
-            <li>System Build</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h4>Industrial & Design</h4>
-          <ul>
-            <li>PLC Systems</li>
-            <li>AutoCAD Professional</li>
-            <li>Robotic Maintenance</li>
-            <li>Electro-Pneumatics</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h4>Leadership</h4>
-          <ul>
-            <li>Team Supervision</li>
-            <li>Customer Service</li>
-            <li>Workflow Management</li>
-          </ul>
-        </div>
-        <div class="skill-category">
-          <h4>Software & OS</h4>
-          <ul>
-            <li>Fault Diagnosis</li>
-            <li>BIOS/Firmware Management</li>
-            <li>Windows Deployment</li>
-            <li>Disk Management (Diskpart)</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
-    <footer>
-      <div class="footer-links">
-        <a href="https://github.com/AZZAUFI">GitHub</a>
-        <a href="https://linkedin.com/in/aidielazzaufi">LinkedIn</a>
-      </div>
-      <p style="font-size: 1.2rem; color: var(--text-dim); margin-top: 20px;">
-        Designed & Built by Mohamad Aidiel Azzaufi &copy; 2026
-      </p>
-    </footer>
+
+<section id="skills">
+
+  <h2 class="section-title">04. Skills</h2>
+
+  <div class="skills-grid">
+
+    <div class="skill-category" data-aos="fade-up">
+
+      <h4>Diagnostics & Systems</h4>
+
+      <ul>
+
+        <li>Motherboard Repair</li>
+
+        <li>Hardware Stress Testing</li>
+
+        <li>Component Diagnostics</li>
+
+        <li>System Build</li>
+
+      </ul>
+
+    </div>
+
+
+
+    <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+
+      <h4>Industrial & Design</h4>
+
+      <ul>
+
+        <li>PLC Systems</li>
+
+        <li>AutoCAD Professional</li>
+
+        <li>Robotic Maintenance</li>
+
+        <li>Electro-Pneumatics</li>
+
+      </ul>
+
+    </div>
+
+
+
+    <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+
+      <h4>Leadership</h4>
+
+      <ul>
+
+        <li>Team Supervision</li>
+
+        <li>Customer Service</li>
+
+        <li>Workflow Management</li>
+
+      </ul>
+
+    </div>
+
+
+
+    <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+
+      <h4>Software & OS</h4>
+
+      <ul>
+
+        <li>Fault Diagnosis</li>
+
+        <li>BIOS/Firmware Management</li>
+
+        <li>Windows Deployment</li>
+
+        <li>Disk Management (Diskpart)</li>
+
+      </ul>
+
+    </div>
+
   </div>
 
+</section>
+
+
+
+    <footer>
+
+      <div class="footer-links">
+
+        <a href="https://github.com/AZZAUFI">GitHub</a>
+
+        <a href="https://linkedin.com/in/aidielazzaufi">LinkedIn</a>
+
+      </div>
+
+      <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 20px;">
+
+        Designed & Built by Mohamad Aidiel Azzaufi &copy; 2026
+
+      </p>
+
+    </footer>
+
+  </div>
+
+
+
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
   <script>
+
     AOS.init({ duration: 800, once: true });
+
     
+
     const toggleSwitch = document.querySelector('#checkbox');
+
     toggleSwitch.addEventListener('change', (e) => {
+
       document.body.classList.toggle('light-mode', e.target.checked);
+
       localStorage.setItem('theme', e.target.checked ? 'light' : 'dark');
+
     }, false);
 
+
+
     if (localStorage.getItem('theme') === 'light') {
+
       document.body.classList.add('light-mode');
+
       toggleSwitch.checked = true;
+
     }
+
   </script>
+
 </body>
+
 </html>
