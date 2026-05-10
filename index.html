@@ -6,31 +6,30 @@
   <meta name="description" content="Mohamad Aidiel Azzaufi - Technical Support Supervisor with 9+ years experience in hardware repair, motherboard troubleshooting, system integration & team leadership." />
   
   <title>Mohamad Aidiel Azzaufi | Technical Support Supervisor</title>
- 
+  
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --primary: #3498db;
-      --secondary: #2c3e50;
       --bg: #0f172a;
       --card-bg: rgba(30, 41, 59, 0.4);
       --text-main: #f1f5f9;
       --text-dim: #94a3b8;
-      --nav-bg: rgba(15, 23, 42, 0.85);
-      --grid-color: rgba(255, 255, 255, 0.03);
+      --nav-bg: rgba(15, 23, 42, 0.95);
     }
     body.light-mode {
       --bg: #f8fafc;
-      --card-bg: rgba(255, 255, 255, 0.7);
+      --card-bg: rgba(255, 255, 255, 0.8);
       --text-main: #0f172a;
       --text-dim: #475569;
-      --nav-bg: rgba(248, 250, 252, 0.85);
-      --grid-color: rgba(0, 0, 0, 0.04);
+      --nav-bg: rgba(248, 250, 252, 0.95);
     }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+    
     body {
       background-color: var(--bg);
       color: var(--text-main);
@@ -45,42 +44,63 @@
       content: "";
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
       z-index: -1;
-      pointer-events: none;
     }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Navigation */
     nav {
-      padding: 1rem 0;
+      padding: 1.2rem 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
       background: var(--nav-bg);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .logo {
       font-family: 'Fira Code', monospace;
       font-weight: bold;
       color: var(--primary);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       text-decoration: none;
     }
-    .nav-links a { 
-      margin-left: 2rem; 
-      text-decoration: none; 
-      color: var(--text-dim); 
-      font-size: 0.85rem; 
-      font-family: 'Fira Code', monospace; 
-      transition: 0.3s; 
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      font-family: 'Fira Code', monospace;
+      transition: 0.3s;
     }
     .nav-links a:hover { color: var(--primary); }
-    
-    .theme-switch { display: inline-block; height: 24px; position: relative; width: 48px; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--text-main);
+      transition: 0.3s;
+    }
+
+    .theme-switch { 
+      display: inline-block; height: 24px; position: relative; width: 48px; 
+    }
     .theme-switch input { display: none; }
     .slider-container {
       background-color: #334155; bottom: 0; cursor: pointer; left: 0; position: absolute; right: 0; top: 0;
@@ -93,94 +113,183 @@
     input:checked + .slider-container .ball { transform: translateX(24px); }
     input:checked + .slider-container { background-color: var(--primary); }
 
-    header { min-height: 85vh; display: flex; flex-direction: column; justify-content: center; }
-    h1 { font-size: clamp(2.8rem, 7vw, 4.8rem); line-height: 1.1; margin-bottom: 1rem; font-weight: 800; letter-spacing: -2px; }
-    .subtitle { font-size: 1.35rem; color: var(--text-dim); margin-bottom: 1.5rem; }
-    .hero-meta { color: var(--text-dim); margin-bottom: 2.5rem; }
+    /* Hero */
+    header { 
+      min-height: 90vh; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+      padding: 2rem 0;
+    }
+    h1 { 
+      font-size: clamp(2.6rem, 8vw, 4.8rem); 
+      line-height: 1.1; 
+      margin-bottom: 0.8rem; 
+      font-weight: 800; 
+      letter-spacing: -2px; 
+    }
+    .subtitle { 
+      font-size: clamp(1.2rem, 4vw, 1.4rem); 
+      color: var(--text-dim); 
+      margin-bottom: 1.5rem; 
+    }
+    .hero-meta { color: var(--text-dim); margin-bottom: 2.5rem; font-size: 1.05rem; }
 
-    .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; }
+    .hero-btns { 
+      display: flex; 
+      gap: 1rem; 
+      flex-wrap: wrap; 
+    }
     .btn-contact, .btn-cv {
-      padding: 0.85rem 1.9rem;
-      text-decoration: none; border-radius: 4px; font-family: 'Fira Code', monospace; 
-      transition: 0.3s; font-size: 0.92rem;
+      padding: 1rem 2rem;
+      text-decoration: none; 
+      border-radius: 6px; 
+      font-family: 'Fira Code', monospace;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 160px;
     }
-    .btn-contact { border: 1px solid var(--primary); color: var(--primary); }
-    .btn-contact:hover { background: rgba(52, 152, 219, 0.1); transform: translateY(-2px); }
-    .btn-cv { background-color: var(--primary); color: #fff; display: flex; align-items: center; gap: 8px; }
-    .btn-cv:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3); }
+    .btn-contact { border: 1.5px solid var(--primary); color: var(--primary); }
+    .btn-contact:hover { background: rgba(52, 152, 219, 0.1); transform: translateY(-3px); }
+    .btn-cv { background-color: var(--primary); color: #fff; }
+    .btn-cv:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4); }
 
-    section { padding: 100px 0; }
+    section { padding: 110px 0; }
     .section-title {
-      font-family: 'Fira Code', monospace; color: var(--primary);
-      font-size: 1.5rem; margin-bottom: 3rem; display: flex; align-items: center;
+      font-family: 'Fira Code', monospace; 
+      color: var(--primary);
+      font-size: 1.55rem; 
+      margin-bottom: 3.5rem; 
+      display: flex; 
+      align-items: center;
     }
-    .section-title::after { 
-      content: ""; height: 1px; width: 200px; background: var(--primary); 
-      margin-left: 20px; opacity: 0.3; 
+    .section-title::after {
+      content: ""; 
+      height: 1px; 
+      flex-grow: 1; 
+      max-width: 180px; 
+      background: var(--primary); 
+      margin-left: 20px; 
+      opacity: 0.3;
     }
 
-    .about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 60px; align-items: center; }
+    .about-grid { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 60px; 
+      align-items: center; 
+    }
     .profile-img-container img {
-      width: 100%; max-width: 320px; border-radius: 20px;
-      filter: grayscale(20%) contrast(1.1);
+      width: 100%;
+      max-width: 340px;
+      border-radius: 20px;
+      filter: grayscale(25%) contrast(1.1);
       transition: 0.5s ease;
     }
-    .profile-img-container:hover img { filter: grayscale(0%); transform: scale(1.02); }
+    .profile-img-container:hover img { 
+      filter: grayscale(0%); 
+      transform: scale(1.03); 
+    }
 
     .exp-card {
-      background: var(--card-bg); padding: 2rem; border-radius: 12px; margin-bottom: 1.5rem;
-      border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(5px);
-      transition: all 0.3s ease;
+      background: var(--card-bg); 
+      padding: 2rem; 
+      border-radius: 12px; 
+      margin-bottom: 1.8rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.4s ease;
     }
-    .exp-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+    .exp-card:hover { 
+      transform: translateY(-6px); 
+      border-color: var(--primary); 
+    }
 
-    .exp-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+    .exp-header { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: baseline; 
+      margin-bottom: 0.8rem; 
+      flex-wrap: wrap;
+      gap: 10px;
+    }
     .company { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
-    .date { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: var(--text-dim); }
-    .role { font-weight: 600; font-size: 0.95rem; color: var(--text-main); display: block; margin-bottom: 1rem; }
+    .date { font-family: 'Fira Code', monospace; font-size: 0.85rem; color: var(--text-dim); }
+    .role { font-weight: 600; margin: 0.8rem 0 1rem; }
 
-    ul li { position: relative; padding-left: 20px; margin-bottom: 0.6rem; color: var(--text-dim); font-size: 0.9rem; }
-    ul li::before { content: "→"; position: absolute; left: 0; color: var(--primary); }
+    ul li { 
+      position: relative; 
+      padding-left: 24px; 
+      margin-bottom: 0.7rem; 
+      color: var(--text-dim); 
+    }
+    ul li::before { 
+      content: "→"; 
+      position: absolute; 
+      left: 0; 
+      color: var(--primary); 
+    }
 
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .skills-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+      gap: 1.8rem; 
+    }
     .skill-category {
-      background: var(--card-bg); padding: 2rem; border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.05);
+      background: var(--card-bg); 
+      padding: 2rem; 
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
     }
     .skill-category h4 {
       color: var(--primary);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
       font-family: 'Fira Code', monospace;
     }
 
     .cert-logo {
-      height: 65px;
+      height: 70px;
       width: auto;
       max-width: 100%;
-      filter: grayscale(100%) opacity(0.8);
-      transition: all 0.3s ease;
+      filter: grayscale(100%) opacity(0.75);
+      transition: all 0.4s ease;
     }
     .exp-card:hover .cert-logo {
       filter: grayscale(0%) opacity(1);
-      transform: scale(1.08);
+      transform: scale(1.1);
     }
 
-    #contact { text-align: center; padding: 120px 0; }
+    #contact { text-align: center; padding: 130px 0; }
 
-    footer { text-align: center; padding: 5rem 0; opacity: 0.8; }
-    .footer-links a { 
-      margin: 0 1rem; 
-      color: var(--text-main); 
-      text-decoration: none; 
-      font-family: 'Fira Code', monospace; 
-      font-size: 0.85rem; 
+    footer { 
+      text-align: center; 
+      padding: 4rem 0 3rem; 
+      opacity: 0.85; 
     }
 
     @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .nav-links { 
+        display: none; 
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--nav-bg);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+      }
+      .nav-links.active { display: flex; }
+      
+      .hamburger { display: flex; }
+      
+      section { padding: 80px 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
       .profile-img-container { order: -1; }
-      .exp-header { flex-direction: column; align-items: flex-start; }
-      .nav-links { display: none; }
+      .hero-btns { justify-content: center; }
     }
   </style>
 </head>
@@ -188,25 +297,35 @@
   <div class="container">
     <nav>
       <a href="#" class="logo">M. Aidiel Azzaufi</a>
-      <div class="nav-links">
+      
+      <div class="nav-links" id="navLinks">
         <a href="#about">ABOUT</a>
         <a href="#experience">EXPERIENCE</a>
         <a href="#education">EDUCATION</a>
         <a href="#skills">SKILLS</a>
         <a href="#certificates">CERTIFICATES</a>
       </div>
-      <label class="theme-switch" for="checkbox">
-        <input type="checkbox" id="checkbox" />
-        <div class="slider-container">
-          <span class="icon">🌙</span>
-          <span class="icon">☀️</span>
-          <div class="ball"></div>
+
+      <div style="display:flex; align-items:center; gap:15px;">
+        <label class="theme-switch" for="checkbox">
+          <input type="checkbox" id="checkbox" />
+          <div class="slider-container">
+            <span class="icon">🌙</span>
+            <span class="icon">☀️</span>
+            <div class="ball"></div>
+          </div>
+        </label>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
-      </label>
+      </div>
     </nav>
 
     <header data-aos="fade-up">
       <h1>Mohamad Aidiel Azzaufi</h1>
+      <p class="subtitle">Technical Support Supervisor &amp; Hardware Specialist</p>
       <p class="hero-meta">📍 Malaysia • Available for new opportunities</p>
       
       <div class="hero-btns">
@@ -216,7 +335,7 @@
     </header>
 
     <section id="about">
-      <h2 class="section-title">01. About Me</h2>
+      <h2 class="section-title" data-aos="fade-up">01. About Me</h2>
       <div class="about-grid">
         <div data-aos="fade-right">
           <p>Dedicated technician with over 9 years of experience troubleshooting a wide range of mechanical, electronic, electrical, and computer problems. Strong background in both repair and troubleshooting, having honed my skills at <strong>Western Digital</strong> for 7 years and now at <strong>ILLEGEAR SDN. BHD.</strong></p>
@@ -230,9 +349,8 @@
     </section>
 
     <section id="experience">
-      <h2 class="section-title">02. Professional Experience</h2>
-      
-      <div class="exp-card" data-aos="fade-up">
+      <h2 class="section-title" data-aos="fade-up">02. Professional Experience</h2>
+      <div class="exp-card" data-aos="fade-up" data-aos-delay="100">
         <div class="exp-header">
           <span class="company">ILLEGEAR SDN. BHD.</span>
           <span class="date">2020 — Present</span>
@@ -246,7 +364,7 @@
         </ul>
       </div>
 
-      <div class="exp-card" data-aos="fade-up">
+      <div class="exp-card" data-aos="fade-up" data-aos-delay="200">
         <div class="exp-header">
           <span class="company">WESTERN DIGITAL (MALAYSIA)</span>
           <span class="date">2012 — 2019</span>
@@ -256,11 +374,11 @@
           <li>Repaired and maintained robotic systems for hard drive manufacturing.</li>
           <li>Troubleshot electronic boards and optimized testing units using PLC knowledge.</li>
           <li>Resolved complex machine equipment and software diagnostic issues.</li>
-          <li>Optimized department testing units and machine equipment via electrical wiring.</li>
+          <li>Optimized department testing units via electrical wiring.</li>
         </ul>
       </div>
 
-      <div class="exp-card" data-aos="fade-up">
+      <div class="exp-card" data-aos="fade-up" data-aos-delay="300">
         <div class="exp-header">
           <span class="company">MERCEDES BENZ PEKAN PLANT</span>
           <span class="date">2010 — 2010</span>
@@ -274,20 +392,17 @@
     </section>
 
     <section id="education">
-      <h2 class="section-title">03. Education</h2>
-      
-      <div class="exp-card" data-aos="fade-up">
+      <h2 class="section-title" data-aos="fade-up">03. Education</h2>
+      <div class="exp-card" data-aos="fade-up" data-aos-delay="100">
         <div class="exp-header">
           <span class="company">Polytechnic Port Dickson</span>
           <span class="date">Jan 2009 — Dec 2011</span>
         </div>
         <span class="role">Diploma in Mechanical Engineering (Manufacturing)</span>
-        <ul>
-          <li>CGPA Score of 2.83</li>
-        </ul>
+        <ul><li>CGPA Score of 2.83</li></ul>
       </div>
 
-      <div class="exp-card" data-aos="fade-up">
+      <div class="exp-card" data-aos="fade-up" data-aos-delay="200">
         <div class="exp-header">
           <span class="company">SMK Dato’ Mahmud Mat</span>
           <span class="date">Jan 2003 — Dec 2007</span>
@@ -297,9 +412,9 @@
     </section>
 
     <section id="skills">
-      <h2 class="section-title">04. Skills</h2>
+      <h2 class="section-title" data-aos="fade-up">04. Skills</h2>
       <div class="skills-grid">
-        <div class="skill-category" data-aos="fade-up">
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
           <h4>Diagnostics & Systems</h4>
           <ul>
             <li>Motherboard Repair</li>
@@ -308,7 +423,7 @@
             <li>System Build & Integration</li>
           </ul>
         </div>
-        <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
           <h4>Industrial & Design</h4>
           <ul>
             <li>PLC Systems</li>
@@ -317,7 +432,7 @@
             <li>Electro-Pneumatics</li>
           </ul>
         </div>
-        <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
           <h4>Leadership</h4>
           <ul>
             <li>Team Supervision</li>
@@ -325,7 +440,7 @@
             <li>Workflow Optimization</li>
           </ul>
         </div>
-        <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
           <h4>Software & OS</h4>
           <ul>
             <li>Fault Diagnosis</li>
@@ -338,57 +453,42 @@
     </section>
 
     <section id="certificates">
-      <h2 class="section-title">05. Certifications</h2>
+      <h2 class="section-title" data-aos="fade-up">05. Certifications</h2>
       <div class="skills-grid">
         <div class="exp-card" data-aos="fade-up" style="text-align: center;">
           <a href="PDF/SMC.pdf" target="_blank" rel="noopener" class="cert-link">
             <img src="images/SMC.png" alt="SMCT-EP1&PLC2" class="cert-logo">
           </a>
-          <div>
-            <span class="role" style="margin-bottom: 0;">SMCT-EP1 & PLC2</span>
-            <p class="date">SMC Pneumatic (SEA) SDN BHD</p>
-          </div>
+          <div><span class="role">SMCT-EP1 & PLC2</span><p class="date">SMC Pneumatic (SEA) SDN BHD</p></div>
         </div>
-
         <div class="exp-card" data-aos="fade-up" data-aos-delay="100" style="text-align: center;">
           <a href="PDF/Autodesk.pdf" target="_blank" rel="noopener" class="cert-link">
             <img src="images/autodesk.jpg" alt="Autocad 2011" class="cert-logo">
           </a>
-          <div>
-            <span class="role" style="margin-bottom: 0;">AutoCAD 2011</span>
-            <p class="date">Autodesk</p>
-          </div>
+          <div><span class="role">AutoCAD 2011</span><p class="date">Autodesk</p></div>
         </div>
-
         <div class="exp-card" data-aos="fade-up" data-aos-delay="200" style="text-align: center;">
           <a href="PDF/Diploma.pdf" target="_blank" rel="noopener" class="cert-link">
             <img src="images/Politeknik-Port-Dickson.jpg" alt="Diploma" class="cert-logo">
           </a>
-          <div>
-            <span class="role" style="margin-bottom: 0;">Diploma in Mechanical Engineering</span>
-            <p class="date">Politeknik Port Dickson</p>
-          </div>
+          <div><span class="role">Diploma in Mechanical Engineering</span><p class="date">Politeknik Port Dickson</p></div>
         </div>
-
-        <div class="exp-card" data-aos="fade-up" style="text-align: center;">
+        <div class="exp-card" data-aos="fade-up" data-aos-delay="300" style="text-align: center;">
           <a href="PDF/SPM.pdf" target="_blank" rel="noopener" class="cert-link">
             <img src="images/SMKDMM.jpg" alt="SPM" class="cert-logo">
           </a>
-          <div>
-            <span class="role" style="margin-bottom: 0;">Sijil Pelajaran Malaysia (SPM)</span>
-            <p class="date">SMK Dato Mahmud Mat</p>
-          </div>
+          <div><span class="role">Sijil Pelajaran Malaysia (SPM)</span><p class="date">SMK Dato Mahmud Mat</p></div>
         </div>
       </div>
     </section>
 
     <section id="contact">
-      <h2 class="section-title">06. Get In Touch</h2>
+      <h2 class="section-title" data-aos="fade-up">06. Get In Touch</h2>
       <div style="max-width: 620px; margin: 0 auto;">
-        <p style="font-size: 1.2rem; margin-bottom: 2.5rem; color: var(--text-dim);">
+        <p style="font-size: 1.25rem; margin-bottom: 2.8rem; color: var(--text-dim);">
           I'm currently open to new opportunities in technical leadership, hardware engineering, or high-performance system support roles.
         </p>
-        <a href="mailto:aidielazzaufi@hotmail.com" class="btn-cv" style="font-size: 1.1rem; padding: 1.1rem 3rem;">
+        <a href="mailto:aidielazzaufi@hotmail.com" class="btn-cv" style="font-size: 1.15rem; padding: 1.2rem 3rem;">
           Say Hello 👋
         </a>
       </div>
@@ -399,7 +499,7 @@
         <a href="https://github.com/AZZAUFI" target="_blank" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/in/aidielazzaufi" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-      <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 25px;">
+      <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 30px;">
         Designed &amp; Built by Mohamad Aidiel Azzaufi © 2026
       </p>
     </footer>
@@ -407,8 +507,24 @@
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 800, once: true });
+    AOS.init({
+      duration: 900,
+      once: true,
+      offset: 100
+    });
 
+    // Hamburger Menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      
+      // Optional: Animate hamburger
+      hamburger.classList.toggle('active');
+    });
+
+    // Theme Toggle
     const toggleSwitch = document.querySelector('#checkbox');
     toggleSwitch.addEventListener('change', (e) => {
       document.body.classList.toggle('light-mode', e.target.checked);
